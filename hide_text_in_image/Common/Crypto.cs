@@ -33,6 +33,7 @@ public class Crypto
             aesAlg = new RijndaelManaged();
             aesAlg.Key = key.GetBytes(aesAlg.KeySize / 8);
             aesAlg.IV = key.GetBytes(aesAlg.BlockSize / 8);
+            aesAlg.Padding = PaddingMode.PKCS7; //added to make it work in Win11
 
             // Create a decrytor to perform the stream transform.
             ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
@@ -94,6 +95,7 @@ public class Crypto
             aesAlg = new RijndaelManaged();
             aesAlg.Key = key.GetBytes(aesAlg.KeySize / 8);
             aesAlg.IV = key.GetBytes(aesAlg.BlockSize / 8);
+            aesAlg.Padding = PaddingMode.PKCS7; //added to make it work in Win11
 
             // Create a decrytor to perform the stream transform.
             ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
